@@ -1,0 +1,41 @@
+Assignment Overview:
+
+You are tasked with creating a microservice using Node.js with TypeScript. You may choose to implement this microservice using either Next.js or Express.js based on your preference.
+
+Requirements:
+
+    Endpoints:
+        POST /create/:status
+            Description: This endpoint will receive incoming calls.
+            Path Parameter: :status can be either success or failure.
+            Functionality: Based on the status parameter, the service should process the request accordingly.
+        GET /stats/status
+            Description: This endpoint will provide statistics about the incoming calls.
+            Response: Should return the total number of calls, total successes, and total failures.
+
+    Data Tracking:
+        Use Redis to cache and keep track of the following:
+            Total Calls: The total number of incoming calls received.
+            Total Success: The number of calls that resulted in success.
+            Total Failure: The number of calls that resulted in failure.
+
+    Dockerization:
+        Use Docker Compose to set up and run the microservice along with Redis.
+        Ensure that both the microservice and Redis are properly configured and can communicate with each other within the Docker network.
+
+Extra Points:
+
+For additional credit, please implement the following:
+
+    PostgreSQL Integration:
+        Include PostgreSQL in your Docker Compose setup.
+        Create a table to store all requests and their results. The table should include the following fields:
+            Path: The endpoint that was called.
+            Start Time: When the request was received.
+            Finish Time: When the request processing was completed.
+            Result: The outcome of the request (success or failure).
+
+    Caching Call Information and Flushing to PostgreSQL:
+        In addition to Redis caching, implement a mechanism to cache detailed call information.
+        Flush the cached call information to PostgreSQL every 5 calls to maintain a persistent record of all interactions with the service.
+        Ensure that the flushing process is efficient and does not disrupt the handling of incoming requests.
